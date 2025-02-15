@@ -39,10 +39,15 @@ document.getElementById("submitbtn").addEventListener("click", createEmployee)
 
 
 // TODO
-function createEmployee() {
+function createEmployee(event) {
   // get data from input field
   // send data to BE
   // call fetchEmployees
+
+  // this is for firefox
+  // for some reason it doesnt work on firefox without this
+  event.preventDefault()
+
   let name = document.getElementById("name").value
   let id = document.getElementById("id").value
   console.log(id, name)
@@ -72,7 +77,7 @@ function deleteEmployee(id) {
     {
       method: "DELETE"
     }
-  ).then(response => { response.json() })
+  ).then(response => response.json())
     .then(fetchEmployees)
 
 }
